@@ -183,12 +183,14 @@ struct ContentView: View {
             }
             .navigationBarHidden(true)
             .sheet(isPresented: $showSimulator) {
-                SimulatorView(
-                    quotes: simulatorQuotes,
-                    selectedIndexes: $selectedIndexes,
-                    totalRequired: totalRequired,
-                    onDismiss: { showSimulator = false }
-                )
+                if !simulatorQuotes.isEmpty {
+                    SimulatorView(
+                        quotes: simulatorQuotes,
+                        selectedIndexes: $selectedIndexes,
+                        totalRequired: totalRequired,
+                        onDismiss: { showSimulator = false }
+                    )
+                }
             }
         }
         .onAppear {
@@ -286,7 +288,7 @@ struct SimulatorView: View {
                                         Text(QuotesDatabase.emojis[index % QuotesDatabase.emojis.count])
                                             .font(.title)
                                         
-                                        Text(quotes[index])
+                                        Text(index < quotes.count ? quotes[index] : "Stay focused.")
                                             .font(.caption2)
                                             .foregroundColor(isSelected ? .black.opacity(0.7) : .white.opacity(0.8))
                                             .lineLimit(4)

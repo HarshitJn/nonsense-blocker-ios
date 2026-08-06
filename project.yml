@@ -1,0 +1,57 @@
+name: NonsenseBlocker
+options:
+  bundleIdPrefix: com.harshitjn
+targets:
+  NonsenseBlocker:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: iOSApp/ContentView.swift
+      - path: iOSApp/BlockManager.swift
+      - path: iOSApp/NonsenseBlockerApp.swift
+    dependencies:
+      - target: NonsenseBlockerCore
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.harshitjn.nonsenseblocker
+      INFOPLIST_FILE: iOSApp/App-Info.plist
+      CODE_SIGN_STYLE: Automatic
+      DEVELOPMENT_TEAM: ""
+      CODE_SIGN_IDENTITY: "Apple Development"
+    entitlements:
+      path: iOSApp/NonsenseBlocker.entitlements
+      
+  NonsenseBlockerShield:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: iOSApp/ShieldConfigurationExtension.swift
+    dependencies:
+      - target: NonsenseBlockerCore
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.harshitjn.nonsenseblocker.ShieldConfiguration
+      INFOPLIST_FILE: iOSApp/ShieldConfiguration-Info.plist
+    entitlements:
+      path: iOSApp/NonsenseBlocker.entitlements
+
+  NonsenseBlockerAction:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: iOSApp/ShieldActionExtension.swift
+    dependencies:
+      - target: NonsenseBlockerCore
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.harshitjn.nonsenseblocker.ShieldAction
+      INFOPLIST_FILE: iOSApp/ShieldAction-Info.plist
+    entitlements:
+      path: iOSApp/NonsenseBlocker.entitlements
+
+  NonsenseBlockerCore:
+    type: library.static
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: Sources/NonsenseBlockerCore
