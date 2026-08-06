@@ -1,5 +1,9 @@
 # ⚡ Installing on a Physical iPhone (Quick Install)
 
+| 1. Main Dashboard | 2. 25-Quote Challenge Grid |
+| --- | --- |
+| ![Main Screen](images/screenshot_main.png) | ![Practice Screen](images/screenshot_practice.png) |
+
 Use this guide to quickly install **Nonsense Blocker** onto your phone (or a friend's phone) using a Mac and Xcode.
 
 ### Step 1: Enable Developer Mode on the iPhone
