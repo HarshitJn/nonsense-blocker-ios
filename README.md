@@ -48,30 +48,39 @@ This compiles the `NonsenseBlockerCore` module and runs the test runner checking
 
 ---
 
-## Xcode Setup & iOS Deployment
+## ⚡ Quick Install on an iPhone (Friend's Device Guide)
 
-To compile the production iOS App, open Xcode and follow these steps:
+Since the project is pre-configured with **XcodeGen**, your friend does **not** need to manually create targets, configure plists, or add capabilities. Everything is already set up!
 
-### 1. Create Xcode Project
-1. Open Xcode and create a new project: **iOS Application -> SwiftUI**. Name it `NonsenseBlocker`.
-2. Right-click the project navigation sidebar and select **New Target...**.
-3. Choose **Shield Configuration Extension** and name it `NonsenseBlockerShield`.
-4. Choose **Shield Action Extension** and name it `NonsenseBlockerAction`.
+### Step 1: Open the Project
+1. Clone this repository to a Mac.
+2. Open the folder and double-click **`NonsenseBlocker.xcodeproj`** (the file with the blue blueprint icon) to open it in Xcode.
 
-### 2. Add Sources
-* Add the files inside `iOSApp/` to your project and assign them to the correct targets:
-  * `BlockManager.swift` and `ContentView.swift` -> **Main App Target**
-  * `ShieldConfigurationExtension.swift` -> **Shield Configuration Target**
-  * `ShieldActionExtension.swift` -> **Shield Action Target**
-* Add `Sources/NonsenseBlockerCore/` as a local dependency package, or drag-and-drop the files directly into the project workspace making sure they are checked under **Target Membership** for all three targets.
+### Step 2: Enable Developer Mode on the iPhone
+1. On the iPhone, go to **Settings -> Privacy & Security**.
+2. Scroll to the bottom, tap **Developer Mode**, toggle it **ON**, and follow the prompts to restart the phone.
+3. Once restarted, unlock the phone and tap **Turn On** when prompted.
 
-### 3. Add App Groups Capability
-To allow the main app and extensions to share the click counter and session timer state:
-1. Select the **NonsenseBlocker** project file in Xcode.
-2. Select the **NonsenseBlocker** target, go to **Signing & Capabilities**, click **+ Capability**, and add **App Groups**.
-3. Create a group named `group.com.harshitjn.nonsenseblocker`.
-4. Add the exact same capability and group name to both **NonsenseBlockerShield** and **NonsenseBlockerAction** targets.
+### Step 3: Connect the Phone & Sign the Targets
+1. Connect the iPhone to the Mac using a USB cable.
+2. If prompted on the iPhone, unlock it and tap **Trust This Computer**.
+3. In Xcode's left sidebar, click the **blue project root file** `NonsenseBlocker` at the very top.
+4. For **each** of the three targets (`NonsenseBlocker`, `NonsenseBlockerShield`, and `NonsenseBlockerAction`):
+   * Select the target under the **Targets** list in the left panel.
+   * Go to the **Signing & Capabilities** tab at the top.
+   * Under the **Team** dropdown, select your Apple ID / Personal Team. *(If you haven't logged in, click "Add an Account..." and sign in with your free Apple ID).*
+   * Xcode will automatically register your friend's iPhone and generate the provisioning profiles.
 
-### 4. Entitlements
-* **On Simulator:** The app will run immediately! Simulators approve Screen Time authorization by default.
-* **On Physical Device:** Request the **Family Controls** entitlement from Apple via your developer account dashboard, and enable it in the target's provisioning profile.
+### Step 4: Build and Install
+1. In Xcode's top toolbar, click the device selector (next to the Play/Run button) and select **your physical iPhone** under the **iOS Devices** list.
+2. Click the **Play (Run)** button (or press `Cmd + R`).
+3. Xcode will build the app and install it directly onto the phone.
+
+### Step 5: Trust the Developer Certificate (First time only)
+1. On the iPhone, try to open the newly installed **Nonsense Blocker** app. You'll see an "Untrusted Developer" warning.
+2. Go to **Settings -> General -> VPN & Device Management**.
+3. Under **Developer App**, tap your Apple ID email.
+4. Tap **Trust [Your Email]** and confirm.
+
+Now they can open the app, tap **Grant Access** to authorize Screen Time, select their apps to block, and turn the blocker **ON**!
+
